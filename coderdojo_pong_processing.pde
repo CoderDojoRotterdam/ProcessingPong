@@ -3,6 +3,9 @@ int paddle_rechts_y;
 int beweeg_paddle_links =  0;
 int beweeg_paddle_rechts = 0;
 
+int score_links = 0;
+int score_rechts = 0;
+
 int balletje_x;
 int balletje_y;
 
@@ -46,17 +49,42 @@ void draw(){
   balletje_y += snelheid_balletje * richting_balletje_y;
   balletje_x += snelheid_balletje * richting_balletje_x;
   
+  textSize(40);
+  text(score_links, 50, 50);
+  text(score_rechts, width-60, 50);
+  
   // Stuitert het balletje ergens tegen aan?
-  if(balletje_x > width){
-    richting_balletje_x = -1;
+  if(balletje_x > width - (20+15)){
+    if(balletje_y > paddle_rechts_y && balletje_y < paddle_rechts_y + 80){
+      richting_balletje_x = -1;
+    }
+    else{
+      score_links++;
+      // Eigenlijk heeft rechts dan verloren, komen we zo op terug..
+      balletje_x = width/2;
+      balletje_y = height/2;
+      
+    }
   }
-  if(balletje_x < 0){
-    richting_balletje_x = 1;
+  
+  if(balletje_x < 35){  
+    if(balletje_y > paddle_links_y && balletje_y < paddle_links_y + 80){
+      richting_balletje_x = 1;
+    }
+    else{ 
+      // Eigenlijk heeft links dan verloren, komen we zo op terug..
+      score_links++;
+      balletje_x = width/2;
+      balletje_y = height/2;
+    }
   }
+  
+  
   
   if(balletje_y > height){
     richting_balletje_y = -1;
   }
+  
   if(balletje_y < 0){
     richting_balletje_y = 1;
   }
@@ -73,11 +101,9 @@ void keyReleased(){
   if(keyCode == UP || keyCode == DOWN){
     beweeg_paddle_rechts = 0;
   }
-  
 }
 
 void keyPressed(){
-  
   // paddle links
   if(key == 'w'){
     beweeg_paddle_links = -10;
