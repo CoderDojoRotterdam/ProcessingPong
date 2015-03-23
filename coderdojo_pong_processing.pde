@@ -35,77 +35,32 @@ void setup(){
 }
 
 void draw(){
-  // Teken de achtergrond zwart
-  background(0, 0, 0);
+
   
-  // Gebruik als vulkleur een grijstint voor alle vormen die we gaan tekenen
-  fill(255, 255, 255);
+  // Hier mag je zelf aan de slag! :)
   
-  // teken de linker paddle
-  rect(20, paddle_links_y, 15, 80);
-  
-  // teken de rechter paddle
-  rect(width - (20+15), paddle_rechts_y, 15, 80);
-  
-  // Beweeg de linker paddle met de snelheid
-  paddle_links_y  = paddle_links_y + beweeg_paddle_links;
-  
-  // Beweer de rechter paddle met de snelheid
-  paddle_rechts_y = paddle_rechts_y + beweeg_paddle_rechts;
-  
-  // Ons balletje krijgt een witte vulkleur
-  fill(255, 255, 255);
-  
-  // Teken het balletje op het scherm
-  ellipse(balletje_x, balletje_y, 10, 10);
-  
-  // Beweeg het balletje
-  balletje_y = balletje_y + snelheid_balletje * richting_balletje_y;
-  balletje_x = balletje_x + snelheid_balletje * richting_balletje_x;
-  
-  // Raken we de rechter paddle?
-  if(balletjeAanRechterKant()){
-    if(balletjeRaaktRechterPaddle()){
-      richting_balletje_x = -1;
-    }
-    else{
-      score_links++;
-      resetBalletje();
-    }
-  }
-  
-  // Raken we de linker paddle?
-  if(balletjeAanLinkerKant()){
-    if(balletjeRaaktLinkerPaddle()){
-      richting_balletje_x = 1;
-    }
-    else{ 
-      score_rechts++;
-      resetBalletje();
-    }
-  }
-  
-  // Stuitert het balletje tegen de onderkant? Verander van richting!
-  if(balletje_y > height){
-    richting_balletje_y = -1;
-  }
-  
-  // Stuitert het balletje tegen de bovenkant? Verander van richting!
-  if(balletje_y < 0){
-    richting_balletje_y = 1;
-  }
-  
-  // Teken de scores op het speelveld met een letter grootte van 40 en een witte kleur
-  textSize(40);
-  fill(255, 255, 255);
-  
-  // Teken de score voor de linker speler op 50 pixels van links en 50 pixels van boven
-  text(score_links, 50, 50);
-  
-  // Teken de score voor de rechter speler op 50 pixels van rechts en 50 pixels van boven
-  text(score_rechts, width-50, 50);
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  -------------------------------------------------------------
+    De functies hieronder hebben we alvast voor je gemaakt! :)
+  -------------------------------------------------------------
+*/
 
 void resetBalletje(){
   /*
